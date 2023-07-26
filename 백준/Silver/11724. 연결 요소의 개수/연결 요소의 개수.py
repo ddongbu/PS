@@ -1,34 +1,31 @@
-import sys
-sys.setrecursionlimit(2500)
+from sys import setrecursionlimit, stdin
 
-N, M = map(int, sys.stdin.readline().split())
-graph = {}
+setrecursionlimit(10 ** 8)
+input = stdin.readline
+
+N, M = map(int, input().split())
+adj = [[0] * N for _ in range(N)]
 
 for _ in range(M):
-    u, v = map(int, sys.stdin.readline().split())
-    if u in graph:
-        graph[u].append(v)
-    else:
-        graph[u] = [v]
-    
-    if v in graph:
-        graph[v].append(u)
-    else:
-        graph[v] = [u]
+    u, v = map(lambda x: x - 1, map(int, input().split()))
+    adj[u][v] = 1
+    adj[v][u] = 1
 
-def dfs(u):
-    visited[u] = True
-    if u in graph:
-        for v in graph[u]:
-            if visited[v] == False:
-                dfs(v)
+chk = [False] * N
+ans = 0
 
-visited = [False for _ in range(N+1)]
-count = 0
 
-for u in range(1, N+1):
-    if visited[u] == False:
-        dfs(u)
-        count += 1
+def dfs(a):
+    for b in range(N):
+        if adj[a][b] and not chk[b]:
+            chk[b] = True
+            dfs(b)
 
-print(count)
+
+for i in range(N):
+    if not chk[i]:
+        chk[i] = True
+        ans += 1
+        dfs(i)
+
+print(ans)
