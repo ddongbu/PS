@@ -1,4 +1,2 @@
 def solution(a, b):
-    a = int(a)
-    b = int(b)
-    return str(a+b)
+    return str(int(a)+int(b))
