@@ -1,0 +1,8 @@
+def solution(order):
+    answer = 0 #금액 합
+    for i in order:
+        if 'latte' in i:
+            answer += 500
+        answer += 4500
+
+    return answer
