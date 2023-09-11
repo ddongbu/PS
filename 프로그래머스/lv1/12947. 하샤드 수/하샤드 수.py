@@ -1,7 +1,7 @@
 def solution(x):
-    #하샤드수 = x의 자리수의 합으로 x가 나누어져야 한다.
-    if x % sum(map(int, str(x))) == 0 :
-        answer = True
+    #자릿수를 나누어 합을 구하고 그 합은 원래 문자열에 나누어 떨어지나 
+    X=[int(i) for i in str(x)]
+    if x % sum(X) == 0:
+        return True
     else:
-        answer = False
-    return answer
+        return False
