@@ -1,8 +1,4 @@
 def solution(phone_number):
-    answer = ''
-    for i in range(len(phone_number)):
-        if i < len(phone_number) - 4:
-            answer += '*'
-        else:
-            answer += phone_number[i]
-    return answer
+    total_phone_number = len(phone_number)
+    back_phone_number = phone_number[-4:]
+    return '*' * (total_phone_number-4) + back_phone_number
