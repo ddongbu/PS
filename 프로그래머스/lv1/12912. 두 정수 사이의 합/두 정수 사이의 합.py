@@ -1,3 +1,9 @@
 def solution(a, b):
-    return sum(range(min(a, b), max(a, b) + 1))
-   
+    sum = 0
+    if b>=a:
+        for i in range(a,b+1):
+            sum += i
+    else:
+        for i in range(b,a+1):
+            sum += i
+    return sum
