@@ -1,2 +1,3 @@
 def solution(x, n):
-    return  [x*i for i in range(1, n+1)]
+    # 함수를 완성하세요
+    return [i * x + x for i in range(n)]
