@@ -6,8 +6,7 @@ def solution(price, money, count):
         result += price * i
         
     if result >= money:
-        answer = result - money
+        answer = result - money 
+        return abs(answer)
     else:
         return 0
-    
-    return abs(answer)
