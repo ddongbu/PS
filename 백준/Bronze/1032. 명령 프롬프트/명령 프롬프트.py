@@ -1,9 +1,10 @@
-n = int(input())
-a = list(input())
-a_len = len(a)
-for i in range(n - 1):
-    b = list(input())
-    for j in range(a_len):
-        if a[j] != b[j]:
-            a[j] = '?'
-print(''.join(a))
+N = int(input())
+first_word = list(input())
+first_word_len = len(first_word)
+
+for idx in range(N - 1):
+    other_words = list(input())
+    for j in range(first_word_len):
+        if first_word[j] != other_words[j]:
+            first_word[j] = '?'
+print(''.join(first_word))
