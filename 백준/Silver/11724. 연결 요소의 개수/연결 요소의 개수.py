@@ -1,31 +1,36 @@
-from sys import setrecursionlimit, stdin
+from collections import deque
+import sys
 
-setrecursionlimit(10 ** 8)
-input = stdin.readline
+N, M = map(int, sys.stdin.readline().split())
+# 정점과 간선의 개수
+visited = [False] * (N + 1)
+# False로 된 리스트 하나 생성 (초기화)
+graph = [[] for _ in range(N + 1)]
+# 정점의 갯수 만큼의 리스트 생성
 
-N, M = map(int, input().split())
-adj = [[0] * N for _ in range(N)]
-
-for _ in range(M):
-    u, v = map(lambda x: x - 1, map(int, input().split()))
-    adj[u][v] = 1
-    adj[v][u] = 1
-
-chk = [False] * N
-ans = 0
-
-
-def dfs(a):
-    for b in range(N):
-        if adj[a][b] and not chk[b]:
-            chk[b] = True
-            dfs(b)
+for i in range(M):
+    x, y = map(int, sys.stdin.readline().split())
+    graph[x].append(y)
+    graph[y].append(x)
 
 
-for i in range(N):
-    if not chk[i]:
-        chk[i] = True
-        ans += 1
-        dfs(i)
+def bfs(graph, start, visited):
+    queue = deque()
+    queue.append(start)
+    visited[start] = True
 
-print(ans)
+    while queue:
+        x = queue.popleft()
+        for i in graph[x]:
+            if not visited[i]:
+                queue.append(i)
+                visited[i] = True
+
+
+cnt = 0
+for i in range(1, N + 1):
+    if not visited[i]:
+        bfs(graph, i, visited)
+        cnt += 1
+
+print(cnt)
